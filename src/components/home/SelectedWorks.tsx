@@ -7,6 +7,9 @@ import { RevealText } from "@/components/motion/RevealText";
 import { ArtworkTile } from "@/components/works/ArtworkTile";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 
+/** How many works the home-page wall shows; /works has the full collection. */
+const HOME_COUNT = 8;
+
 /** Height + vertical offset rhythm for the horizontal sequence. */
 const RHYTHM = [
   { w: "hz:w-[46vw]", offset: "hz:self-end", aspect: undefined },
@@ -92,7 +95,7 @@ export function SelectedWorks() {
             </div>
           </header>
 
-          {artworks.map((art, i) => {
+          {artworks.slice(0, HOME_COUNT).map((art, i) => {
             const r = RHYTHM[i % RHYTHM.length];
             return (
               <div

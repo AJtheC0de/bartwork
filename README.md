@@ -21,7 +21,8 @@ Nothing below is final until Blerta has read and agreed to it. Every unapproved 
 | Faith text | `copy.faith.body` | Draft wording from the brief |
 | Qur'an 57:4 excerpt | `copy.faith.verse` | Check it matches the wording in her Instagram bio |
 | Her own story | `copy.story.personal` | Empty. Only her own words go here |
-| Artwork titles, medium, size, year, availability | `src/content/artworks.ts` | All `null`, shown as "To be confirmed" |
+| Artwork titles | `src/content/artworks.ts` | Taken from the photo file names. Confirm "Shqiponja" (file: "Shqiponija"), "And He is", the numbering of "Keep going I–IV" and "Sabr I/II", and the untitled plum & olive work |
+| Artwork medium, size, year, availability | `src/content/artworks.ts` | All `null`, shown as "To be confirmed" |
 | Artwork descriptions | `draftDescription` | Neutral descriptions of what is visible only |
 | Portrait and process photos | `photos` in `site.ts` | Placeholders |
 | Privacy page | `src/app/privacy/page.tsx` | Draft, needs legal review |
@@ -32,11 +33,11 @@ To approve a text, set `approved: true`; the marker disappears.
 
 ## Adding an artwork
 
-1. Put the photo(s) in `src/content/images/`: ideally one **frameless** photo of the canvas plus one **framed** photo. Use at least 3000px on the long edge, natural light and no filters.
+1. Put the photos in `src/content/images/works/<slug>/`: `canvas.jpg` (the canvas only, frontal and perspective-corrected, about 2200px on the long edge) plus `01.jpg`, `02.jpg`, … for the further views (about 1800px). The originals live in `_source/`.
 2. Import them at the top of `src/content/artworks.ts` and add an entry to the `artworks` array (copy an existing one). The array's order is the gallery order.
-3. Set `featured: true` to include it in the pinned home-page exhibition (Chapter 04).
-4. Optional: `details` (label, focal point in % and zoom) for macro crops; `textureFocus` and `textureZoom` for the scroll zoom.
-5. Remove one of the `placeholder: true` entries (`work-03`, `work-04`) when real works replace them.
+3. List the further photos under `views` (`photo`, `detail` or `visualisation`; visualisations are always labelled as such). The first photo also serves as `framedImage`.
+4. Set `featured: true` to include it in the pinned home-page exhibition (Chapter 04).
+5. Optional: `details` (label, focal point in % and zoom) for macro crops; `textureFocus` and `textureZoom` for the scroll zoom.
 
 Detail pages, sitemap, galleries and structured data update automatically.
 

@@ -14,6 +14,17 @@ export type ArtworkImage = {
   alt: string;
 };
 
+/**
+ * A further view of a work, shown on its detail page.
+ *  - "photo": the work photographed in a real room.
+ *  - "detail": a close-up photograph of the paint surface.
+ *  - "visualisation": the work placed in a rendered interior. Always
+ *    labelled as such, never presented as a real photograph.
+ */
+export type ArtworkView = ArtworkImage & {
+  kind: "photo" | "detail" | "visualisation";
+};
+
 export type ArtworkDetail = {
   /** Short label, e.g. "Brushwork". Describe only what is visible. */
   label: string;
@@ -52,6 +63,8 @@ export type Artwork = {
   image?: ArtworkImage;
   /** Photograph including the frame, used for "museum piece" moments. */
   framedImage?: ArtworkImage;
+  /** Further photographs and visualisations, in display order. */
+  views?: ArtworkView[];
 
   /** Where to zoom for texture moments (percent of image). */
   textureFocus?: FocalPoint;

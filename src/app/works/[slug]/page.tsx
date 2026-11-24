@@ -16,6 +16,12 @@ import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Crop } from "@/components/ui/Crop";
 import { ApprovalNote } from "@/components/ui/ApprovalNote";
 
+const VIEW_LABEL = {
+  photo: "Photograph",
+  detail: "Close-up",
+  visualisation: "Visualisation — rendered interior",
+} as const;
+
 export function generateStaticParams() {
   return publishedArtworks.map((a) => ({ slug: a.slug }));
 }
@@ -164,6 +170,37 @@ export default async function ArtworkPage({ params }: PageProps<"/works/[slug]">
                   <p className="mt-3 flex justify-between">
                     <span className="t-label text-ink">{d.label}</span>
                     <span className="t-num text-mute">D.{String(i + 1).padStart(2, "0")}</span>
+                  </p>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {art.views?.length ? (
+        <section aria-labelledby="views-heading" className="gutter mt-32 md:mt-48">
+          <div className="mb-10 flex items-baseline justify-between border-t border-line pt-5 md:mb-16">
+            <h2 id="views-heading" className="t-label text-ink">Views</h2>
+            <span className="t-num text-mute">{String(art.views.length).padStart(2, "0")} images</span>
+          </div>
+          <ul className="columns-1 gap-8 sm:columns-2 lg:columns-3">
+            {art.views.map((v, i) => (
+              <li key={v.src.src} className="mb-10 break-inside-avoid md:mb-14">
+                <Reveal y={30}>
+                  <div className="relative bg-ivory" style={{ aspectRatio: `${v.src.width} / ${v.src.height}` }}>
+                    <Image
+                      src={v.src}
+                      alt={v.alt}
+                      fill
+                      placeholder="blur"
+                      sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="mt-3 flex justify-between gap-4">
+                    <span className="t-label text-ink">{VIEW_LABEL[v.kind]}</span>
+                    <span className="t-num text-mute">V.{String(i + 1).padStart(2, "0")}</span>
                   </p>
                 </Reveal>
               </li>

@@ -16,11 +16,11 @@ const LAYOUT = [
 ];
 
 const ORDER: [string, string][] = [
-  ["abstract-composition", "Brushwork"],
-  ["abstract-composition", "Texture"],
-  ["allah-calligraphy", "Calligraphic form"],
-  ["abstract-composition", "Colour transition"],
-  ["allah-calligraphy", "Ground texture"],
+  ["long-way-home", "Brushwork"],
+  ["long-way-home", "Texture"],
+  ["and-he-is", "Calligraphic form"],
+  ["colors-of-hope", "Splatter"],
+  ["and-he-is", "Ground texture"],
 ];
 
 /**
